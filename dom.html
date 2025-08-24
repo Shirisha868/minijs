@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <button id="mybutton">click mee </button><br>
+    <h2 id="myh2">counter: <span id="counter">0</span></h2>
+    <div class="container"></div>
+    <script>
+        
+        const myb=document.getElementById("mybutton");
+        const myh2=document.getElementById("myh2");
+        const counter=document.getElementById("counter");
+        let count=0;
+        myb.addEventListener("click",()=>{
+            const newdiv=document.createElement("div");
+            newdiv.classList.add("mydiv");
+            const r = Math.floor(Math.random()*256);
+            const g = Math.floor(Math.random()*256);
+            const b = Math.floor(Math.random()*256);
+            const randomcolor=`rgb(${r},${g},${b})`;
+            
+            const brightness=r*0.299+g*0.587+b*0.114;
+            const newspan=document.createElement("span");
+            newspan.textContent=`Div ${count+1}`;
+            if(brightness>125){
+                newdiv.style.color="black";
+            }
+            else{
+                newdiv.style.color="white";
+            }
+            newdiv.style.backgroundColor=randomcolor;
+            newdiv.appendChild(newspan);
+
+            document.querySelector(".container").appendChild(newdiv);
+            count++;
+            counter.textContent=count;
+           
+            newdiv.addEventListener("mouseover",()=>{
+                newdiv.style.backgroundColor=`rgb(${Math.floor(Math.random()*256)},${Math.floor(Math.random()*256)},${Math.floor(Math.random()*256)})`;
+
+            })
+            newdiv.addEventListener("mouseleave",()=>{
+                newdiv.style.backgroundColor=randomcolor;
+
+            })
+
+        });
+    
+    </script>
+</body>
+</html>
