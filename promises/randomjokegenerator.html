@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Joke Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+            background: #f0f8ff;
+        }
+        h1 {
+            color: #333;
+        }
+        #setup {
+            font-size: 20px;
+            color: #555;
+        }
+        #punchline {
+            font-size: 22px;
+            font-weight: bold;
+            color: #ff4500;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: white;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Random Joke Generator</h1>
+    <p id="setup"></p>
+    <p id="punchline"></p>
+    <button id="generateBtn">Generate Joke</button>
+
+    <script>
+        const fetchdata = async () => {
+            try {
+                const response = await fetch('https://official-joke-api.appspot.com/random_joke');
+                const data = await response.json();
+                document.getElementById('setup').innerText = "Setup: " + data.setup;
+                document.getElementById('punchline').innerText = "Punchline: " + data.punchline;
+            } catch(error) {
+                console.log(error);
+            }
+        }
+
+        document.getElementById('generateBtn').addEventListener('click', fetchdata);
+    </script>
+</body>
+</html>
